@@ -7,7 +7,7 @@ class Typer():
     qwertyKeyboardArray = [
         ['`','1','2','3','4','5','6','7','8','9','0','-','='],
         ['q','w','e','r','t','y','u','i','o','p','[',']','\\'],
-        ['a','s','d','f','g','h','j','k','l',';','\''],
+        ['a','s','d','f','g','h','j','k','l',';','\'', '\n'],
         ['z','x','c','v','b','n','m',',','.','/'],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ]
@@ -20,7 +20,7 @@ class Typer():
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ]
     
-    def __init__(self, accuracy = 0.9, correction_chance = 0.6, typing_delay = (0.04, 0.11)):
+    def __init__(self, accuracy = 0.9, correction_chance = 0.6, typing_delay = (0.04, 0.11), distance = 1):
         if type(typing_delay) in [int, float]:
             self.delayMode = "strict"
         elif type(typing_delay) in [list, tuple]:
@@ -30,6 +30,7 @@ class Typer():
                 self.WrongArgumentException()
         else:
             self.WrongArgumentException()
+        self.dist = distance
         self.delay = typing_delay
         self.acc = accuracy
         self.correction = correction_chance
@@ -49,7 +50,7 @@ class Typer():
         for a in text:
             if random.random() > self.acc:
                 # make error
-                cast = self.wrongCharacterChoice(a)
+                cast = self.wrongCharacterChoice(a, dist = self.dist)
                 isError = True                   
             else:
                 cast = a
@@ -95,6 +96,9 @@ class Typer():
         if len(k) == 0:
             k = [(index, row.index(char)) for index, row in enumerate(self.qwertyShiftedKeyboardArray) if char in row]
             arr = self.qwertyShiftedKeyboardArray
+        if len(k) == 0:
+            print("Please provide English text only")
+            return (4,0), arr
         return k[0], arr
     
     @staticmethod
