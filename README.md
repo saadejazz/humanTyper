@@ -26,7 +26,7 @@ text = """
     """
 element = driver.find_element_by_id('editor')
 element.clear()
-ty = typer.Typer(accuracy = 0.90, correction_chance = 0.50, typing_delay = (0.04, 0.08), distance = 2)
+ty = Typer(accuracy = 0.90, correction_chance = 0.50, typing_delay = (0.04, 0.08), distance = 2)
 ty.send(element, text)
 ```
 
