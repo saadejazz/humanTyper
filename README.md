@@ -30,7 +30,7 @@ ty = typer.Typer(accuracy = 0.90, correction_chance = 0.50, typing_delay = (0.04
 ty.send(element, text)
 ```
 
-(https://i.imgur.com/naIJxBC.gif)
+![Typing Animation](https://i.imgur.com/xDdtEP4.gif)
 
 **Notes:**  
 * **accuracy** determines how often mistakes are made.  
